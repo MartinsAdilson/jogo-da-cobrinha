@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace; /* Fonte com estilo mais "Arcade" */
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a2e;
+    color: white;
+}
+
+h1 { margin-bottom: 20px; color: #4CAF50; }
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hidden { display: none !important; }
+
+/* Botões */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 250px;
+}
+button:hover { transform: scale(1.05); }
+#btn-records { background-color: #e94560; }
+
+/* Estilo do Jogo */
+#current-score-display {
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+canvas {
+    background-color: #16213e;
+    border: 4px solid #0f3460;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+p { margin-top: 15px; color: #888; font-size: 1.2em; }
+
+/* Estilo dos Recordes (Lista Top 10) */
+#high-score-list {
+    list-style-type: none;
+    width: 300px;
+    margin-bottom: 20px;
+}
+#high-score-list li {
+    background-color: #0f3460;
+    margin: 5px 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#high-score-list li:first-child {
+    color: #FFD700; /* O 1º lugar fica dourado! */
+}
+
+/* Estilo da caixa de Game Over e Iniciais */
+#new-record-box {
+    background-color: #0f3460;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: center;
+}
+#player-initials {
+    font-size: 2em;
+    text-align: center;
+    width: 120px;
+    margin: 10px;
+    text-transform: uppercase;
+    background: #16213e;
+    color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+}
+.blink {
+    color: #FFD700;
+    animation: piscar 1s infinite;
+}
+@keyframes piscar {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}

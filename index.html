@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Cobrinha</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA 1: MENU PRINCIPAL -->
+    <div id="menu-screen" class="screen">
+        <h1>🐍 Jogo da Cobrinha</h1>
+        <button id="btn-new-game">Novo Jogo</button>
+        <button id="btn-records">Recordes</button>
+    </div>
+
+    <!-- TELA 2: RECORDES -->
+    <div id="records-screen" class="screen hidden">
+        <h1>🏆 Top 10 Recordes 🏆</h1>
+        <ol id="high-score-list"></ol>
+        <button id="btn-back-menu">Voltar ao Menu</button>
+    </div>
+
+    <!-- TELA 3: O JOGO -->
+    <div id="game-screen" class="screen hidden">
+        <h1>Snake Game</h1>
+        <!-- Pontuação movida para o lado de FORA do quadro -->
+        <h2 id="current-score-display">Pontos: 0</h2> 
+        
+        <canvas id="game-board" width="400" height="400"></canvas>
+        <p>Use as setas do teclado para jogar</p>
+    </div>
+
+    <!-- TELA 4: GAME OVER (Nova Tela para as Iniciais) -->
+    <div id="game-over-screen" class="screen hidden">
+        <h1>Fim de Jogo!</h1>
+        <h2>Sua pontuação final: <span id="final-score">0</span></h2>
+        
+        <div id="new-record-box" class="hidden">
+            <p class="blink">🎉 NOVO RECORDE NO TOP 10! 🎉</p>
+            <p>Digite 3 letras para salvar:</p>
+            <!-- Input que aceita apenas 3 caracteres -->
+            <input type="text" id="player-initials" maxlength="3" autocomplete="off">
+            <button id="btn-save-record">Salvar</button>
+        </div>
+
+        <button id="btn-back-from-gameover">Voltar ao Menu</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
