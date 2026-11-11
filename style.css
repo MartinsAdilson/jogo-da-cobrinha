@@ -1,135 +1,74 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Courier New', Courier, monospace;
+   box-sizing: border-box;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #1a1a2e;
-    color: white;
-    overflow: hidden; /* Impede a barra de rolagem durante a animação */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: #f0f2f5;
+   margin: 0;
 }
 
-h1 { margin-bottom: 20px; color: #4CAF50; }
-
-.screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.calculator {
+   background-color: #222;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+   width: 300px;
 }
 
-.hidden { display: none !important; }
-
-/* === ANIMAÇÃO DE INTRODUÇÃO === */
-#intro-screen {
-    position: absolute;
-    height: 100vh;
-    justify-content: center;
+#display {
+   background-color: #333;
+   color: #fff;
+   font-size: 2.5em;
+   text-align: right;
+   padding: 15px;
+   border-radius: 5px;
+   margin-bottom: 15px;
+   overflow-x: auto;
 }
 
-.intro-snake {
-    font-size: 6em;
-    /* A cobrinha vai da esquerda para a direita em 2.5 segundos */
-    animation: moveSnake 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
-.intro-text {
-    font-size: 3em;
-    opacity: 0;
-    /* O texto aparece e desaparece junto com a cobrinha */
-    animation: fadeInOut 2.5s ease-in-out forwards;
-}
-
-@keyframes moveSnake {
-    0% { transform: translateX(-100vw); }
-    50% { transform: translateX(0); }
-    100% { transform: translateX(100vw); }
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0; }
-    30% { opacity: 1; }
-    70% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-/* === RESTO DO DESIGN === */
 button {
-    background-color: #4CAF50;
-    color: white;
     border: none;
-    padding: 15px 30px;
-    margin: 10px;
+    background-color: #444;
+    color: white;
     font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 8px;
+    padding: 15px;
+    border-radius: 5px;
     cursor: pointer;
     transition: 0.2s;
-    width: 250px;
 }
-button:hover { transform: scale(1.05); }
-#btn-records { background-color: #e94560; }
 
-#current-score-display {
-    color: #FFD700;
-    margin-bottom: 10px;
+button:hover {
+    background-color: #555;
 }
-canvas {
-    background-color: #16213e;
-    border: 4px solid #0f3460;
-    border-radius: 5px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-p { margin-top: 15px; color: #888; font-size: 1.2em; }
 
-#high-score-list {
-    list-style-type: none;
-    width: 300px;
-    margin-bottom: 20px;
+.operator {
+    background-color: #ff9500;
 }
-#high-score-list li {
-    background-color: #0f3460;
-    margin: 5px 0;
-    padding: 10px 15px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-#high-score-list li:first-child { color: #FFD700; }
 
-#new-record-box {
-    background-color: #0f3460;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
-    text-align: center;
+.operator:hover {
+    background-color: #e08900;
 }
-#player-initials {
-    font-size: 2em;
-    text-align: center;
-    width: 120px;
-    margin: 10px;
-    text-transform: uppercase;
-    background: #16213e;
-    color: white;
-    border: 2px solid #4CAF50;
-    border-radius: 5px;
+
+.equal {
+    background-color: #34c759;
+    grid-row: span 2;
 }
-.blink {
-    color: #FFD700;
-    animation: piscar 1s infinite;
+
+.equal:hover {
+    background-color: #28a745;
 }
-@keyframes piscar {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+
+.zero {
+    grid-column: span 2;
 }

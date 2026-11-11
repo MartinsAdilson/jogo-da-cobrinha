@@ -3,55 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+    <title>Calculadora</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="calculator">
+        <div id="display">0</div>
+        <div class="keys">
+            <button onclick="clearDisplay()" class="operator">C</button>
+            <button onclick="appendNumber('/')" class="operator">&divide;</button>
+            <button onclick="appendNumber('*')" class="operator">&times;</button>
+            <button onclick="deleteLast()" class="operator">DEL</button>
 
-    <!-- TELA 0: INTRODUÇÃO (Animação) -->
-    <div id="intro-screen" class="screen">
-        <div class="intro-snake">🐍</div>
-        <h1 class="intro-text">Snake Game</h1>
-    </div>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendNumber('-')" class="operator">-</button>
 
-    <!-- TELA 1: MENU PRINCIPAL (Agora começa escondido) -->
-    <div id="menu-screen" class="screen hidden">
-        <h1>🐍 Snake Game</h1>
-        <button id="btn-new-game">Novo Jogo</button>
-        <button id="btn-records">Recordes</button>
-    </div>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendNumber('+')" class="operator">+</button>
 
-    <!-- TELA 2: RECORDES -->
-    <div id="records-screen" class="screen hidden">
-        <h1>🏆 Top 10 Recordes 🏆</h1>
-        <ol id="high-score-list"></ol>
-        <button id="btn-back-menu">Voltar ao Menu</button>
-    </div>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="calculate()" class="equal">=</button>
 
-    <!-- TELA 3: O JOGO -->
-    <div id="game-screen" class="screen hidden">
-        <h1>Snake Game</h1>
-        <h2 id="current-score-display">Pontos: 0</h2> 
-        <canvas id="game-board" width="400" height="400"></canvas>
-        <p>Use as setas do teclado para jogar</p>
-    </div>
-
-    <!-- TELA 4: GAME OVER -->
-    <div id="game-over-screen" class="screen hidden">
-        <h1>Fim de Jogo!</h1>
-        <h2>Sua pontuação final: <span id="final-score">0</span></h2>
-        
-        <div id="new-record-box" class="hidden">
-            <p class="blink">🎉 NOVO RECORDE NO TOP 10! 🎉</p>
-            <p>Digite 3 letras para salvar:</p>
-            <input type="text" id="player-initials" maxlength="3" autocomplete="off">
-            <button id="btn-save-record">Salvar</button>
+            <button onclick="appendNumber('0')" class="zero">0</button>
+            <button onclick="appendNumber('.')">.</button>
         </div>
-
-        <button id="btn-back-from-gameover">Voltar ao Menu</button>
     </div>
-
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
