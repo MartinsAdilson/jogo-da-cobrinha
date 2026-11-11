@@ -1,4 +1,5 @@
 // Telas
+const introScreen = document.getElementById('intro-screen');
 const menuScreen = document.getElementById('menu-screen');
 const gameScreen = document.getElementById('game-screen');
 const recordsScreen = document.getElementById('records-screen');
@@ -27,8 +28,14 @@ let direcao;
 let food = {};
 let specialFood = {};
 
-// Carrega o Top 10 do localStorage (Transforma texto em Array)
 let top10Records = JSON.parse(localStorage.getItem("snakeTop10")) || [];
+
+// === TRANSIÇÃO DA INTRODUÇÃO PARA O MENU ===
+// Aguarda 2.5 segundos (tempo da animação no CSS) e troca de tela
+setTimeout(() => {
+    introScreen.classList.add('hidden');
+    menuScreen.classList.remove('hidden');
+}, 2500);
 
 // === NAVEGAÇÃO ===
 btnNewGame.addEventListener('click', () => {
@@ -57,21 +64,14 @@ btnBackFromGameOver.addEventListener('click', () => {
 // === LÓGICA DE SALVAR RECORDE ===
 btnSaveRecord.addEventListener('click', () => {
     let initials = inputInitials.value.toUpperCase();
-    
-    // Se o jogador deixar em branco, salva como "AAA"
     if (initials.trim() === "") initials = "AAA";
 
-    // Adiciona o novo recorde na lista
     top10Records.push({ nome: initials, pontos: score });
-
-    // Ordena do maior para o menor e corta no 10º lugar
     top10Records.sort((a, b) => b.pontos - a.pontos);
     top10Records = top10Records.slice(0, 10);
 
-    // Salva a lista inteira no navegador (Transforma Array em texto)
     localStorage.setItem("snakeTop10", JSON.stringify(top10Records));
 
-    // Volta para o menu
     gameOverScreen.classList.add('hidden');
     menuScreen.classList.remove('hidden');
 });
@@ -84,7 +84,6 @@ function atualizarTelaDeRecordes() {
         return;
     }
 
-    // Cria as "linhas" do placar dinamicamente
     top10Records.forEach((record, index) => {
         let li = document.createElement('li');
         li.innerHTML = `<span>#${index + 1} ${record.nome}</span> <span>${record.pontos}</span>`;
@@ -164,14 +163,14 @@ function draw() {
 
     if (comeuNormal) {
         score++;
-        scoreDisplay.innerText = "Pontos: " + score; // Atualiza fora do canvas
+        scoreDisplay.innerText = "Pontos: " + score;
         food = {
             x: Math.floor(Math.random() * 20) * box,
             y: Math.floor(Math.random() * 20) * box
         };
     } else if (comeuEspecial) {
         score += 5;
-        scoreDisplay.innerText = "Pontos: " + score; // Atualiza fora do canvas
+        scoreDisplay.innerText = "Pontos: " + score;
         specialFood.active = false;
         snake.pop();
     } else {
@@ -180,16 +179,13 @@ function draw() {
 
     let newHead = { x: snakeX, y: snakeY };
 
-    // === GAME OVER ===
     if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || checkCollision(newHead, snake)) {
         clearInterval(game);
         
-        // Exibe a tela de Game Over
         gameScreen.classList.add('hidden');
         gameOverScreen.classList.remove('hidden');
         finalScoreText.innerText = score;
 
-        // Lógica: Verifica se tem menos de 10 recordes OU se a pontuação é maior que a do último lugar
         let isTop10 = false;
         if (top10Records.length < 10) {
             isTop10 = true;
@@ -198,11 +194,10 @@ function draw() {
             if (score > piorDoTop10) isTop10 = true;
         }
 
-        // Se fez pelo menos 1 ponto e bateu recorde, mostra a caixa para digitar as letras
         if (isTop10 && score > 0) {
             newRecordBox.classList.remove('hidden');
             inputInitials.value = "";
-            inputInitials.focus(); // Já deixa o cursor piscando para digitar
+            inputInitials.focus();
         } else {
             newRecordBox.classList.add('hidden');
         }
